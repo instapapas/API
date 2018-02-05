@@ -1,0 +1,33 @@
+{
+  "name": "instapapas-api",
+  "version": "1.0.0",
+  "description": "API for instapapas",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"¯\\_(ツ)_/¯\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/instapapas/API.git"
+  },
+  "keywords": [
+    "instapapas",
+    "API"
+  ],
+  "author": "Matías con tilde",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/instapapas/API/issues"
+  },
+  "homepage": "https://github.com/instapapas/API#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "monk": "^6.0.5",
+    "multer": "^1.3.0",
+    "wade": "^0.3.3"
+  }
+}
