@@ -1,5 +1,5 @@
 # API
-The instapapas API (in developement)
+The instapapas API (in development)
 
 # Running
 ```bash
