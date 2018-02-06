@@ -45,6 +45,8 @@ const images = db.get('images');
 
 const wade = require('wade');
 
+const config = require('./config.js');
+
 app.post('/sign-up', (req, res) => {
   users.findOne({
     username: req.body.username
@@ -80,14 +82,14 @@ app.post('/log-in', (req, res) => {
       .then(same => {
         if (same) {
           let randStr = '';
-          for (let i = 0; i < process.env.AUTH_TOKEN_LENGTH; i++) {
-            randStr += process.env.AUTH_TOKEN_CHARSET[Math.floor(Math.random() * process.env.AUTH_TOKEN_CHARSET.length)];
+          for (let i = 0; i < config.AUTH_TOKEN_LENGTH; i++) {
+            randStr += config.AUTH_TOKEN_CHARSET[Math.floor(Math.random() * config.AUTH_TOKEN_CHARSET.length)];
           }
 
           users.update(data._id, {
             $set: {
               _authToken: randStr,
-              _sessionExpire: new Date().getTime() + process.env.LOGIN_MAX_TIME
+              _sessionExpire: new Date().getTime() + config.LOGIN_MAX_TIME
             }
           })
           .then(updated => {
@@ -120,7 +122,7 @@ app.post('/upload-image', authenticate, upload.single('file'), (req, res) => {
   .then(data => {
     images.update(data._id, {
       $set: {
-        url: process.env.IMAGE_URL + data._id
+        url: config.IMAGE_URL + data._id
       }
     })
     .then(updated => {

@@ -1,10 +1,9 @@
 # API
 The instapapas API (in development)
 
-# Running
+### Running
 ```bash
 npm install
-source .env
 npm start
 ```
 In parallel:
