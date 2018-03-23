@@ -54,24 +54,22 @@ app.post('/sign-up', (req, res) => {
   users.findOne({
     username: req.body.username
   }).then(data => {
-    if (req.body.password != req.body.confirmPassword) {
+    if (data) {
+      res.json(false);
+    } else if (req.body.password != req.body.confirmPassword) {
       res.json(false);
     } else {
-      if (data) {
-        res.json(false);
-      } else {
-        bcrypt.hash(req.body.password, 12).then(hash => {
-          const user = {
-            username: req.body.username,
-            password: hash,
-            email: req.body.email,
-            name: req.body.name
-          };
-          users.insert(user).then(inserted => {
-            res.json(true);
-          });
+      bcrypt.hash(req.body.password, 12).then(hash => {
+        const user = {
+          username: req.body.username,
+          password: hash,
+          email: req.body.email,
+          name: req.body.name
+        };
+        users.insert(user).then(inserted => {
+          res.json(true);
         });
-      }
+      });
     }
   });
 });
